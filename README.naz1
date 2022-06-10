@@ -1,82 +1,154 @@
-                                                     Sheikh Nazmul Hasan - (4091734) - EXERCISE SQL 
-Students
-Id->int
-Name->strings
-Address->strings
--------------------------------------------------
-1. CREATE TABLE
-CREATE TABLE students ( id int, name varchar(200), address varchar(200) );
 
-CREATE TABLE teacher ( id int, name varchar(200), address varchar(200) );
+							 What is Inner Join ?
 
-CREATE TABLE teacher_students ( id int, teacher_id int, students_id int);
+An Inner Join returns only the rows that have matching values in both the tables and join between the two tables.
 
-2. Insert Data Into Table
-INSERT INTO students(id, name, address) VALUES(1, "abc", "Gopalgong");
+							 What is Outer Join?
 
-INSERT INTO students (id, name, address) VALUES(2, "ABC2","Dhaka"), (3, "ABC3", "Dhaka"), (4, "ABC4", "Dhaka"), (5, "ABC5", "Dhaka"), (6, "ABC6", "Dhaka");
+The Outer Join includes the matching rows as well as some of the non-matching rows between the two tables. 
+Basically An Outer join differs from the Inner join in how it handles the false match condition.
 
-INSERT INTO students(id, name, address) VALUES(1, "Mr. D", "Dhaka");
+Outer Join are three differnt type:
 
-INSERT INTO teacher_students(id, teacher_id, students_id) VALUES(1, 1,1);
+   1. Left Outer Join:Matching records between both the tables and Returns all the rows from the LEFT table.
+   2. Right Outer Join: Returns all the rows from the RIGHT table and matching records between both the tables.
+   3. Full Outer Join: Left Outer Join and Right Outer Join the result of both combines it.
 
-INSERT INTO teacher(id, name, address) VALUES(1, "Mr. AAA", "Dhaka");
+Image Link:  https://www.softwaretestinghelp.com/wp-content/qa/uploads/2019/05/Capture-1.jpg
 
-3. Drop Table
-DROP TABLE students1;
+Difference between Inner join vs Outer join in SQL Server:
 
-4. Alter Table(ADD)
-ALTER TABLE students ADD mobile_number varchar(20);
+CREATE TABLE Seven_class (
+    student_name varchar(200),
+    Seven_grade varchar(200)
+);
 
-5. Alter Table Modify data type
-ALTER TABLE students MODIFY mobile_number int;
+INSERT INTO Seven_class (student_name, Seven_grade)
+VALUES('Hasan', 'C'),('Nazmul', 'D'),('Alam', 'A'),('Jony', 'B'),('Joy', 'B');
 
-6. Alter Table (Drop Column)
-ALTER TABLE students DROP COLUMN mobile_number;
+CREATE TABLE Eight_class (
+    student_name varchar(200),
+    Eight_grade varchar(200)
+);
 
-7. Update
-UPDATE students SET name = "Nazmul" WHERE id = 1;
+INSERT INTO Eight_class (student_name, Eight_grade)
+VALUES('Hasan', 'A'),('Nazmul', 'C'),('Alam', 'B'),('Borhan', 'A'),('Sabbir', 'D');
+		
+Seven_Class:
+		Student_name	Seven_grade	
+		----------------------------
+		Hasan		C		
+		Nazmul		D		
+		Alam		A		
+		Jony		B
+		Joy		B
+Eight_Class:
+		Student_name	Eight_grade	
+		----------------------------
+		Hasan		C		
+		Nazmul		D		
+		Alam		A		
+		Borha		A
+		Sabbir		D
 
-UPDATE students SET address = "Kotalipara" WHERE id = 1; 
 
-8. Delete
-DELETE FROM students WHERE id = 2;
 
-9. Select
-SELECT * FROM `students`WHERE id = 1;SELECT name FROM `students`WHERE id = 1;
+Inner Join:
+	SELECT * FROM Seven_class INNER JOIN Eight_class on 
+	Seven_class.student_name=Eight_class.student_name;
 
-SELECT DISTINCT address FROM students;
+Result Inner Join: Student_name	       Seven_grade	Eight_grade
+		   -----------------------------------------------
+		   Hasan		C		A
+		   Nazmul		D		C
+		   Alam			A		B
 
-SELECT * FROM students WHERE address = "Dhaka";
+Full Outer Join:
+	SELECT * FROM Seven_class OUTER JOIN Eight_class on 
+	Seven_class.student_name=Eight_class.student_name;
 
-SELECT * FROM students WHERE address LIKE "D%";
+Result Full Outer Join: Student_name	Seven_grade	Eight_grade
+		   	-------------------------------------------
+		   	Hasan		C		A
+		   	Nazmul		D		C
+		  	 Alam		A		B
+		   	Borha		NULL		A
+		   	Sabbir		NULL		D
+		   	Jony		B		NULL
+		   	Joy		B		NULL
 
-SELECT * FROM students ORDER BY id DESC;
+Left Outer Join:
+	SELECT * FROM Seven_class LEFT OUTER JOIN Eight_class on 
+	Seven_class.student_name=Eight_class.student_name;
 
-SELECT * FROM students ORDER BY id ASC;
+Result Left Outer Join: Student_name	Seven_grade	Eight_grade
+		   	------------------------------------------------
+		  	 Hasan		C		A
+		   	 Nazmul		D		C
+		  	 Alam		A		B
+		   	 Jony		B		NULL
+		   	 Joy		B		NULL
+Right Outer Join:
+	SELECT * FROM Seven_class RIGHT OUTER JOIN Eight_class on 
+	Seven_class.student_name=Eight_class.student_name;
 
-SELECT * FROM students ORDER BY name;
+Result Right Outer Join: Student_name	Seven_grade	Eight_grade
+		   	 -------------------------------------------
+		   	 Hasan		C		A
+		   	 Nazmul		D		C
+		  	 Alam		A		B
+		   	 Borha		NULL		A
+		   	 Sabbir		NULL		D
+-----------------------------------------------------------------------------------------------------------------------------------------------------	LEFT JOIN:
+	
+It joins two or more tables, returns all records from the left table, 
+and matching rows from the right-hand table. 	
+The result-set will contain null value if there is no matching row on the right side table. 	
+It is also known as LEFT OUTER JOIN. 	
 
-SELECT MIN(id) FROM students;
 
-SELECT MAX(id) FROM students;
+RIGHT JOIN:
 
-SELECT COUNT(id) FROM students;
+It is used to join two or more tables, returns all records from the right table, 
+and matching rows from the left-hand table.
+The result-set will contain null value if there is no matching row on the left side table.
+It is also called as RIGHT OUTER JOIN.	   	 
 
-SELECT COUNT(id) FROM students;
+Difference between left join vs right join in SQL Server:
 
-SELECT SUM(id) FROM students;
 
-SELECT SUM(id) as Totalsum FROM students;
+	CREATE table Table1 (id int, name varchar (100))
 
-SELECT * FROM students WHERE address IN ("Kotalipara", "Khulna");
+	CREATE table Table2 (id int, name varchar (100))
 
-SELECT * FROM students WHERE id BETWEEN 1 and 2;
+Data for Table1:
 
-SELECT * FROM students WHERE (id BETWEEN 1 and 2) and (name in ("Nazmul"));
+    Id     Name     
+    -------------
+    1      A        
+    2      B    
 
-SELECT * FROM students WHERE name LIKE "%H%";
+Data for Table2:
 
-10. Inner Join
--- studentsName -- teacherName -- 1. students -- 2. teacher_students -- 3. teacher SELECT s.name as studentsName, t.name as teacherName FROM students as s INNER JOIN teacher_students as ts on s.id = ts.students_id INNER JOIN teacher as t on t.id = ts.teacher_id;
- 
+    Id     Name     
+    -------------
+    1      A        
+    2      B 
+    3      C
+
+If I execute both below mentioned SQL statements, both outputs will be the same
+
+	SELECT * FROM Table1
+  	LEFT JOIN Table2 on Table1.id = Table2.id
+
+	SELECT * FROM Table2
+ 	RIGHT JOIN Table1 on Table1.id = Table2.id
+
+Result:
+    Id     Name     
+    -------------
+    1      A        
+    2      B    
+
+
+
