@@ -1,0 +1,82 @@
+                                                     Sheikh Nazmul Hasan - (4091734) - EXERCISE SQL 
+Students
+Id->int
+Name->strings
+Address->strings
+-------------------------------------------------
+1. CREATE TABLE
+CREATE TABLE students ( id int, name varchar(200), address varchar(200) );
+
+CREATE TABLE teacher ( id int, name varchar(200), address varchar(200) );
+
+CREATE TABLE teacher_students ( id int, teacher_id int, students_id int);
+
+2. Insert Data Into Table
+INSERT INTO students(id, name, address) VALUES(1, "abc", "Gopalgong");
+
+INSERT INTO students (id, name, address) VALUES(2, "ABC2","Dhaka"), (3, "ABC3", "Dhaka"), (4, "ABC4", "Dhaka"), (5, "ABC5", "Dhaka"), (6, "ABC6", "Dhaka");
+
+INSERT INTO students(id, name, address) VALUES(1, "Mr. D", "Dhaka");
+
+INSERT INTO teacher_students(id, teacher_id, students_id) VALUES(1, 1,1);
+
+INSERT INTO teacher(id, name, address) VALUES(1, "Mr. AAA", "Dhaka");
+
+3. Drop Table
+DROP TABLE students1;
+
+4. Alter Table(ADD)
+ALTER TABLE students ADD mobile_number varchar(20);
+
+5. Alter Table Modify data type
+ALTER TABLE students MODIFY mobile_number int;
+
+6. Alter Table (Drop Column)
+ALTER TABLE students DROP COLUMN mobile_number;
+
+7. Update
+UPDATE students SET name = "Nazmul" WHERE id = 1;
+
+UPDATE students SET address = "Kotalipara" WHERE id = 1; 
+
+8. Delete
+DELETE FROM students WHERE id = 2;
+
+9. Select
+SELECT * FROM `students`WHERE id = 1;SELECT name FROM `students`WHERE id = 1;
+
+SELECT DISTINCT address FROM students;
+
+SELECT * FROM students WHERE address = "Dhaka";
+
+SELECT * FROM students WHERE address LIKE "D%";
+
+SELECT * FROM students ORDER BY id DESC;
+
+SELECT * FROM students ORDER BY id ASC;
+
+SELECT * FROM students ORDER BY name;
+
+SELECT MIN(id) FROM students;
+
+SELECT MAX(id) FROM students;
+
+SELECT COUNT(id) FROM students;
+
+SELECT COUNT(id) FROM students;
+
+SELECT SUM(id) FROM students;
+
+SELECT SUM(id) as Totalsum FROM students;
+
+SELECT * FROM students WHERE address IN ("Kotalipara", "Khulna");
+
+SELECT * FROM students WHERE id BETWEEN 1 and 2;
+
+SELECT * FROM students WHERE (id BETWEEN 1 and 2) and (name in ("Nazmul"));
+
+SELECT * FROM students WHERE name LIKE "%H%";
+
+10. Inner Join
+-- studentsName -- teacherName -- 1. students -- 2. teacher_students -- 3. teacher SELECT s.name as studentsName, t.name as teacherName FROM students as s INNER JOIN teacher_students as ts on s.id = ts.students_id INNER JOIN teacher as t on t.id = ts.teacher_id;
+ 
