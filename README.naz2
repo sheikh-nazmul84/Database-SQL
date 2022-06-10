@@ -1,3 +1,4 @@
+<<<<<<< HEAD
                                                      Sheikh Nazmul Hasan - (4091734) - EXERCISE SQL 
 Students
 Id->int
@@ -322,3 +323,6 @@ SELECT * FROM students WHERE name LIKE "%H%";
 
 10. Inner Join
 -- studentsName -- teacherName -- 1. students -- 2. teacher_students -- 3. teacher SELECT s.name as studentsName, t.name as teacherName FROM students as s INNER JOIN teacher_students as ts on s.id = ts.students_id INNER JOIN teacher as t on t.id = ts.teacher_id;
+=======
+# Database-SQL
+>>>>>>> 8f7503e1ac96115de9073798f3dd2942bcec0c27
