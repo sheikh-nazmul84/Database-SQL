@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index Page</title>
+</head>
+<body>
+
+<form method="POST", action="/employeeAdd">
+
+    {% csrf_token %}
+    <div>
+        <div>
+            <label>Employee Id</label>
+            <div>
+                {{form.empid}}
+            </div>
+        </div>
+        <div>
+            <label>Employee Name</label>
+            <div>
+                {{form.name}}
+            </div>
+        </div>
+        <div>
+            <label>Employee Email</label>
+            <div>
+                {{form.email}}
+            </div>
+        </div>
+        <div>
+            <label>Employee Contact Number</label>
+            <div>
+                {{form.contactNumber}}
+            </div>
+        </div>
+        <button type="submit"> SUBMIT</button>
+    </div>
+</form>
+</body>
+</html>
